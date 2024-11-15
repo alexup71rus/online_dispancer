@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
+    "@popperjs/core": "^2.11.8",
     "pinia": "^2.2.6",
+    "v-calendar": "^3.1.2",
     "vite-plugin-vuetify": "^2.0.4",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",

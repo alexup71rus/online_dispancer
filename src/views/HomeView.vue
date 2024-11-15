@@ -1,9 +1,15 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import Profile from "@/components/Index/Profile.vue";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Profile />
   </main>
 </template>
+
+<style>
+ main {
+   position: relative;
+ }
+</style>

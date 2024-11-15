@@ -1,15 +1,18 @@
 <script setup>
-import { RouterView } from 'vue-router';
+import {RouterView, useRoute} from 'vue-router';
+import {computed} from "vue";
+
+const route = computed(() => useRoute());
 </script>
 
 <template>
+  {{ currentPage }}
   <v-app>
     <!-- Хедер -->
     <v-app-bar app color="primary" dark>
       <v-toolbar-title>Online Dispancer</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text to="/">Главная</v-btn>
-      <v-btn text to="/about">О проекте</v-btn>
+      <v-btn v-if="route.fullPath !== '/'" text to="/">Назад</v-btn>
     </v-app-bar>
 
     <!-- Основной контент -->
@@ -22,7 +25,7 @@ import { RouterView } from 'vue-router';
     <!-- Футер -->
     <v-footer app color="grey lighten-2">
       <v-container>
-        <span>© 2024 Моя компания</span>
+        <span>© 2024 Булочки мечты</span>
       </v-container>
     </v-footer>
   </v-app>
