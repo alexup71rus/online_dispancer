@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NonGraphikView from "@/components/NonGraphikView.vue";
 import ScheduleOfVisits from "@/components/Index/ScheduleOfVisits.vue";
-import ScheduleOfMedicine from "@/components/ScheduleOfMedicine.vue";
+import ScheduleOfMedicine from "@/components/Index/ScheduleOfMedicine.vue";
 import {ALLERGIES} from "@/data/allergies.js";
 import {VACCINATIOONS} from "@/data/vaccinations.js";
 import {DISEASES} from "@/data/diseases.js";
