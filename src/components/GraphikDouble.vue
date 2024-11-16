@@ -1,14 +1,12 @@
 <script setup>
-import GraphikDouble from "@/components/GraphikDouble.vue";
 import {computed, onMounted, ref} from "vue";
 
 const props = defineProps(['data']);
 
-const times = ref([]);
-const values = ref([]);
-const doubleData = ref([]);
+const timesDouble = ref([]);
+const valuesDouble = ref([]);
 
-const graphicData = computed(() => {
+const graphicDataDouble = computed(() => {
   return props.data.sort((item1, item2) => {
     let time1 = getDate(item1.time),
       time2 = getDate(item2.time);
@@ -32,41 +30,24 @@ function getDate(time) {
 }
 
 function setTimesAndValues() {
-  graphicData.value.forEach((item, i) => {
-    times.value.push(props.data[i].time);
-    if (props.data[i].result.includes('/')) {
-      let valueData = props.data[i].result.split('/');
-      doubleData.value.push({
-        time: props.data[i].time,
-        result: valueData[1],
-      })
-      values.value.push(valueData[0]);
-    } else {
-      values.value.push(props.data[i].result);
-    }
+  graphicDataDouble.value.forEach((item, i) => {
+    timesDouble.value.push(props.data[i].time);
+    valuesDouble.value.push(props.data[i].result);
   });
 }
 
 function getTimeIndex(time) {
-  return graphicData.value.findIndex((item) => item.time === time);
+  return graphicDataDouble.value.findIndex((item) => item.time === time);
 }
 
 function getValueIndex(timeIndex) {
-  if (!graphicData.value[timeIndex]) {
-    return -1;
-  }
 
-  return values.value.findIndex((item) => {
-    if (graphicData.value[timeIndex].result.includes('/')) {
-      return item === graphicData.value[timeIndex].result.split('/')[0];
-    }
-    return item === graphicData.value[timeIndex].result;
-  });
+  return valuesDouble.value.findIndex((item) => item === graphicDataDouble.value[timeIndex].result);
 }
 
 
 function sortValues() {
-  values.value = values.value.sort((item1, item2) => {
+  valuesDouble.value = valuesDouble.value.sort((item1, item2) => {
     if (Number(item1) > Number(item2)) {
       return 1;
     }
@@ -87,25 +68,24 @@ onMounted(() => {
 
 <template>
   <div class="graphic" :style="{
-    height: `${graphicData.length * 40}px`
+    height: `${graphicDataDouble.length * 40}px`
   }">
-    <template v-for="(time, i) in times" :key="`graphic-${i}`">
-      <div v-if="getTimeIndex(times[i]) > -1" class="graphic__item" :style="{
+    <template v-for="(time, i) in timesDouble" :key="`graphic-double-${i}`">
+      <div v-if="getTimeIndex(timesDouble[i]) > -1" class="graphic__item" :style="{
         height: `${(getValueIndex(i) + 1) * 40}px`,
-        width: `calc(100% / ${times.length} * ${times[i - 1] === time ? i : i + 1} - ${times[i - 1] === time && i > 0 ? 69 : 80}px)`,
+        width: `calc(100% / ${timesDouble.length} * ${timesDouble[i - 1] === time && i > 0 ? i : i + 1} - ${timesDouble[i - 1] === time && i > 0 ? 69 : 80}px)`,
       }">
         <div>
           <span></span>
         </div>
       </div>
     </template>
-    <div v-for="(value, i) in values" :key="`value-${i}`" :style="{
+    <div v-for="(value, i) in valuesDouble" :key="`value-double-${i}`" :style="{
       height: `${(i + 1) * 40}px`
     }" class="graphic__value">
       <p>{{ value }}</p>
     </div>
   </div>
-  <GraphikDouble v-if="doubleData.length > 0" :data="doubleData" />
 </template>
 
 <style scoped>
@@ -165,7 +145,7 @@ onMounted(() => {
 }
 
 .graphic__item span {
-  background-color: #BB86FC;
+  background-color: #3E94D1;
   border: 1px solid #fff;
   width: 10px;
   height: 100%;
