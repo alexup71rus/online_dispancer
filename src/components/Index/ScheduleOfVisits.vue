@@ -1,24 +1,43 @@
 <script setup>
-import { ref } from "vue";
+import {onMounted, ref} from "vue";
+import {SCHEDULE_OF_VISITS} from "@/data/sheduleOfVisits.js";
 
 const props = defineProps(['title']);
 
-const date = new Date();
-const attributes = ref([
-  {
-    highlight: true,
-    dates: date,
-  },
-]);
+const minDate = new Date();
+const attributes = ref([]);
+const info = ref([]);
 
-// Пример события с временем
-const events = ref([
-  {
-    start: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 0), // 10:00
-    end: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 30),   // 12:00
-    title: 'Приём у врача'
+const prepareDates = () => {
+  SCHEDULE_OF_VISITS.forEach((item, i) => {
+    attributes.value.push({
+      key: i+1,
+      highlight: {
+        color: 'purple',
+        fillMode: 'solid'
+      },
+      dates: new Date(item.year, item.month, item.day, item.hours, item.minutes),
+    });
+  });
+};
+
+const onDayClick = (day) => {
+  if (day.attributes.length > 0) {
+    const key = day.attributes[0].key - 1;
+
+    info.value = [{
+      title: 'Приём у врача',
+      start: new Date(SCHEDULE_OF_VISITS[key].year, SCHEDULE_OF_VISITS[key].month, SCHEDULE_OF_VISITS[key].day, SCHEDULE_OF_VISITS[key].hours, SCHEDULE_OF_VISITS[key].minutes), // 10:00
+      duration: `Продолжительность: ${SCHEDULE_OF_VISITS[key].duration}`,
+    }];
+  } else  {
+    info.value = [];
   }
-]);
+};
+
+onMounted(() => {
+  prepareDates();
+});
 
 </script>
 
@@ -33,10 +52,13 @@ const events = ref([
     expanded
     is-dark="true"
     :attributes="attributes"
+    :min-date="minDate"
+    @dayclick="onDayClick"
   />
 
-  <div class="time" v-for="event in events" :key="event.title">
-    <p>{{ event.title }}: {{ event.start.toLocaleTimeString() }} - {{ event.end.toLocaleTimeString() }}</p>
+  <div v-if="info.length > 0" class="time">
+    <p>{{ info[0].title }}: {{ info[0].start.toLocaleString() }}</p>
+    <p>{{ info[0].duration }} минут</p>
   </div>
 
 </template>

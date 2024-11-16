@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import NonListView from "@/views/NonListView.vue";
+import NonListView from "@/views/NonGraphikView.vue";
 import ScheduleOfVisits from "@/components/Index/ScheduleOfVisits.vue";
 import {ALLERGIES} from "@/data/allergies.js";
 import {VACCINATIOONS} from "@/data/vaccinations.js";

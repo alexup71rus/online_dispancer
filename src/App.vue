@@ -1,12 +1,19 @@
 <script setup>
 import {RouterView, useRoute} from 'vue-router';
-import {computed} from "vue";
+import {computed, onMounted, provide} from "vue";
+import {apiService} from "@/api/ApiService.js";
 
 const route = computed(() => useRoute());
+
+provide('apiService', apiService);
+
+onMounted(async () => {
+  await apiService.fetchData();
+});
+
 </script>
 
 <template>
-  {{ currentPage }}
   <v-app>
     <!-- Хедер -->
     <v-app-bar app color="primary" dark>
