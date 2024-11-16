@@ -45,7 +45,7 @@ onMounted(() => {
 <template>
   <v-toolbar color="" elevation="1" height="84">
     <template #title>
-      <h1 class="text-h4 font-weight-bold">{{ title }}</h1>
+      <h1 class="font-weight-bold">{{ title }}</h1>
     </template>
   </v-toolbar>
 
@@ -65,9 +65,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.v-toolbar {
-  background-color: unset !important;
-}
 .time {
   margin-top: 20px;
 }

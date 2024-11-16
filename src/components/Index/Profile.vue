@@ -10,7 +10,7 @@ import { MENU } from "@/data/menu.js";
       <v-card-text class="pa-2">
         <v-list-item v-for="(item, i) in MENU" :key="i" rounded="lg">
           <template #title>
-            <a :href="item.link" class="text-body-2 font-weight-bold" style="color: #fff; width: 100%; display: block">{{ item.title }}</a>
+            <a :href="item.link" class="font-weight-bold" style="color: #fff; width: 100%; display: block; font-size: 12px;">{{ item.title }}</a>
           </template>
         </v-list-item>
       </v-card-text>

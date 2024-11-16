@@ -22,7 +22,6 @@ const props = defineProps(['list']);
 .schedule__list {
   display: grid;
   gap: 35px;
-  margin-top: 40px;
 }
 
 .schedule__item {
@@ -37,7 +36,7 @@ const props = defineProps(['list']);
 
 .schedule__info > div {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
 }
 
@@ -66,7 +65,7 @@ const props = defineProps(['list']);
 }
 
 .schedule__info p {
-  padding: 20px;
+  padding: 10px;
   background-color: rgb(60, 60, 60);
   color: #fff;
   border-radius: 15px;

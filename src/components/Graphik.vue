@@ -92,7 +92,7 @@ onMounted(() => {
     <template v-for="(time, i) in times" :key="`graphic-${i}`">
       <div v-if="getTimeIndex(times[i]) > -1" class="graphic__item" :style="{
         height: `${(getValueIndex(i) + 1) * 40}px`,
-        width: `calc(100% / ${times.length} * ${times[i - 1] === time ? i : i + 1} - ${times[i - 1] === time && i > 0 ? 69 : 80}px)`,
+        width: `calc(100% / ${times.length} * ${times[i - 1] === time ? i : i + 1} - ${times[i - 1] === time && i > 0 ? 29 : 40}px)`,
       }">
         <div>
           <span></span>
@@ -108,7 +108,7 @@ onMounted(() => {
   <GraphikDouble v-if="doubleData.length > 0" :data="doubleData" />
 </template>
 
-<style scoped>
+<style>
 .graphic {
   position: relative;
   width: 100%;
@@ -124,7 +124,7 @@ onMounted(() => {
   width: 1px;
   background-color: rgb(60,60,60);
   bottom: 0;
-  left: 50px;
+  left: 40px;
 }
 
 .graphic::after {
@@ -132,16 +132,16 @@ onMounted(() => {
   position: absolute;
   display: block;
   height: 1px;
-  width: calc(100% - 50px);
+  width: calc(100% - 40px);
   background-color: rgb(60,60,60);
   bottom: 0;
-  left: 50px;
+  left: 40px;
 }
 
 .graphic__item {
   position: absolute;
   bottom: 0;
-  left: 50px;
+  left: 40px;
   display: flex;
   justify-content: end;
 }
@@ -149,12 +149,12 @@ onMounted(() => {
 .graphic__value {
   position: absolute;
   bottom: 0;
-  left: 50px;
+  left: 40px;
 }
 
 .graphic__value p {
   transform: translateX(calc(-100% - 10px)) translateY(-50%);
-  max-width: 70px;
+  max-width: 30px;
 }
 
 .graphic__item > div {
