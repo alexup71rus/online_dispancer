@@ -6,6 +6,7 @@ export const SCHEDULE_OF_VISITS = [
     hours: 12,
     minutes: 30,
     duration: 30,
+    result: 'Необходим диспансерный контроль',
   },
   {
     year: 2024,

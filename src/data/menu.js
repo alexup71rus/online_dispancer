@@ -17,7 +17,7 @@ export const MENU = [
   },
   {
     title: 'Расписание приёма медикаментов',
-    link: '/#',
+    link: '/schedule-of-medicine',
   },
   {
     title: 'Расписание снятия показателей',

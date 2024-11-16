@@ -29,6 +29,7 @@ const onDayClick = (day) => {
       title: 'Приём у врача',
       start: new Date(SCHEDULE_OF_VISITS[key].year, SCHEDULE_OF_VISITS[key].month, SCHEDULE_OF_VISITS[key].day, SCHEDULE_OF_VISITS[key].hours, SCHEDULE_OF_VISITS[key].minutes), // 10:00
       duration: `Продолжительность: ${SCHEDULE_OF_VISITS[key].duration}`,
+      result: SCHEDULE_OF_VISITS[key].result ?? '',
     }];
   } else  {
     info.value = [];
@@ -52,13 +53,13 @@ onMounted(() => {
     expanded
     is-dark="true"
     :attributes="attributes"
-    :min-date="minDate"
     @dayclick="onDayClick"
   />
 
   <div v-if="info.length > 0" class="time">
     <p>{{ info[0].title }}: {{ info[0].start.toLocaleString() }}</p>
     <p>{{ info[0].duration }} минут</p>
+    <p v-if="info[0].result.length > 0">Заключение: {{ info[0].result }}</p>
   </div>
 
 </template>

@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import NonListView from "@/views/NonGraphikView.vue";
+import NonGraphikView from "@/components/NonGraphikView.vue";
 import ScheduleOfVisits from "@/components/Index/ScheduleOfVisits.vue";
+import ScheduleOfMedicine from "@/components/ScheduleOfMedicine.vue";
 import {ALLERGIES} from "@/data/allergies.js";
 import {VACCINATIOONS} from "@/data/vaccinations.js";
 import {DISEASES} from "@/data/diseases.js";
@@ -17,19 +18,19 @@ const router = createRouter({
     {
       path: '/allergies',
       name: 'allergies',
-      component: NonListView,
+      component: NonGraphikView,
       props: {title: 'Аллергии', items: ALLERGIES}
     },
     {
       path: '/vaccinations',
       name: 'vaccinations',
-      component: NonListView,
+      component: NonGraphikView,
       props: {title: 'Прививки', items: VACCINATIOONS}
     },
     {
       path: '/diseases',
       name: 'diseases',
-      component: NonListView,
+      component: NonGraphikView,
       props: {title: 'Хронические заболевания', items: DISEASES}
     },
     {
@@ -37,6 +38,12 @@ const router = createRouter({
       name: 'schedule-of-visits',
       component: ScheduleOfVisits,
       props: {title: 'Расписание приемов очно'}
+    },
+    {
+      path: '/schedule-of-medicine',
+      name: 'schedule-of-medicine',
+      component: ScheduleOfMedicine,
+      props: {title: 'Расписание приёма медикаментов'}
     },
   ],
 })
