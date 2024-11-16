@@ -1,4 +1,5 @@
 <script setup>
+import Graphik from "@/components/Graphik.vue";
 import {ref} from "vue";
 
 const props = defineProps(['params']);
@@ -28,7 +29,8 @@ const paramOpenId = ref('');
       </div>
       <div v-if="item.values.length > 0">
         <h3>Динамика:</h3>
-
+<!--        <Graphik :data="item.values"/>-->
+        <Graphik :data="[{time: '16.11.2024 18:09:03', result: '120'},{time: '16.11.2024 19:09:03', result: '80'},{time: '16.11.2024 17:09:03', result: '100'},{time: '16.11.2024 18:12:03', result: '90'},]"/>
       </div>
     </div>
   </template>
@@ -42,24 +44,34 @@ const paramOpenId = ref('');
   margin-bottom: 30px;
 }
 
-.param-block > div {
-  display: flex;
-  justify-content: space-between;
-  background-color: rgb(30,30,30);
-  border-radius: 15px;
+.param-block {
+  position: relative;
+  display: grid;
+  gap: 20px;
   height: 0;
   overflow: hidden;
 }
 
-.param-block.open > div {
+.param-block.open {
   padding: 20px;
   height: auto;
+  background-color: rgb(30,30,30);
+  border-radius: 15px;
 }
 
+.param-block > div:first-child {
+  display: flex;
+  justify-content: space-between;
+}
 
 .param-block > div > div {
   display: grid;
   gap: 20px;
   align-items: center;
+}
+
+.param-block > div > div > div {
+  display: flex;
+  gap: 10px;
 }
 </style>
