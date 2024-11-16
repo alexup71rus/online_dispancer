@@ -21,6 +21,6 @@ export const MENU = [
   },
   {
     title: 'Расписание снятия показателей',
-    link: '/#',
+    link: '/schedule-of-params',
   },
 ];

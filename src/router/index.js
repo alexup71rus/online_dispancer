@@ -6,6 +6,7 @@ import ScheduleOfMedicine from "@/components/Index/ScheduleOfMedicine.vue";
 import {ALLERGIES} from "@/data/allergies.js";
 import {VACCINATIOONS} from "@/data/vaccinations.js";
 import {DISEASES} from "@/data/diseases.js";
+import ScheduleOfParams from "@/components/Index/ScheduleOfParams.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,12 @@ const router = createRouter({
       name: 'schedule-of-medicine',
       component: ScheduleOfMedicine,
       props: {title: 'Расписание приёма медикаментов'}
+    },
+    {
+      path: '/schedule-of-params',
+      name: 'schedule-of-params',
+      component: ScheduleOfParams,
+      props: {title: 'Расписание снятия показателей'}
     },
   ],
 })
