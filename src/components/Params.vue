@@ -27,9 +27,6 @@ const paramOpenId = ref('');
         </div>
         <v-btn @click="paramOpenId = ''">Закрыть</v-btn>
       </div>
-      <div v-if="item.name.toLowerCase() !== 'давление' && i === params.length - 1">
-        <Graphik :data="[{time: '16.11.2024 18:09:03', result: '120'},{time: '16.11.2024 19:09:03', result: '80'},{time: '16.11.2024 17:09:03', result: '100'},{time: '16.11.2024 18:12:03', result: '90'},]"/>
-      </div>
       <div v-if="item.values.length > 0">
         <h3>Динамика:</h3>
         <Graphik :data="item.values"/>
