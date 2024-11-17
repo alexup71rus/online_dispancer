@@ -55,6 +55,57 @@ export function prepareSchedule (checkups, type) {
   return result;
 }
 
+export function prepareParams (checkups) {
+  return checkups.reduce(function (acc, current) {
+    if (current.type === 'measurements') {
+      const paramIncludesIndex = acc.findIndex((item) => item.name === parseDescription(current.description));
+// debugger
+      if (paramIncludesIndex >= 0) {
+        if (
+          (typeof current.checkup_data.value === "string" && current.checkup_data.value.length > 0) ||
+          typeof current.checkup_data.value === "number"
+        ) {
+          acc[paramIncludesIndex].values.push({
+            time: prepareTime(current.start_at),
+            result: String(current.checkup_data.value),
+          });
+        } else if (
+          (typeof current.formattedValue === "string" && current.formattedValue.length > 0) ||
+          typeof current.formattedValue.value === "number"
+        ) {
+          acc[paramIncludesIndex].values.push({
+            time: prepareTime(current.start_at),
+            result: String(current.formattedValue),
+          });
+        }
+      } else {
+        let values = [];
+        if (typeof current.checkup_data.value === "string" && current.checkup_data.value.length > 0) {
+          values.push({
+            time: prepareTime(current.start_at),
+            result: current.checkup_data.value,
+          });
+        } else if (typeof current.formattedValue === "string" && current.formattedValue.length > 0) {
+          values.push({
+            time: prepareTime(current.start_at),
+            result: current.formattedValue,
+          });
+        }
+
+        acc.push({
+          name: parseDescription(current.description),
+          values: values
+        });
+      }
+    }
+
+    return acc;
+  }, []);
+}
+function parseDescription(text) {
+  return text.split('"')[1] ?? '';
+}
+
 export function setStatusText(status) {
   let text = '';
 
