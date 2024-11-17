@@ -30,4 +30,6 @@ export async function sendSummaryRequest(patientData) {
       console.error("Ошибка сети:", err);
     }
   }
+
+  return '';
 }
